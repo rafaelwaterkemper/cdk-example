@@ -7,7 +7,7 @@ export function createAPIGateway(stack: Stack, lambdaFunction: NodejsFunction) {
     handler: lambdaFunction,
     proxy: false,
     deployOptions: {
-      stageName: process.env.STAGE || "dev",
+      stageName: process.env.NAMESPACE || "dev",
     },
   });
 
