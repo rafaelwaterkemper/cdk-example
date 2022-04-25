@@ -5,11 +5,11 @@ import { Code, Function, IFunction, Runtime } from "aws-cdk-lib/aws-lambda";
 import { join } from "path";
 
 export function getEventBridgeCron(stack: Stack) {
-  const wordGenerator = new Function(stack, "simple-api", {
+  const wordGenerator = new Function(stack, "medium-project", {
     runtime: Runtime.NODEJS_14_X,
     handler: "index.handler",
     code: Code.fromAsset(
-      join(__dirname, "..", "..", "src", "lambdas", "simple-api")
+      join(__dirname, "..", "..", "src", "lambdas", "medium-project")
     ),
   });
 

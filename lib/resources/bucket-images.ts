@@ -11,6 +11,6 @@ export function getBucketImage(stack: Stack) {
         allowedMethods: [HttpMethods.GET],
       },
     ],
-    bucketName: "images-cdk-example-" + process.env.NAMESPACE,
+    bucketName: "images-cdk-example-" + (process.env.NAMESPACE || "dev"),
   });
 }
