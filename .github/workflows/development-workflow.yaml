@@ -34,8 +34,11 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Synth template
+        run: npm cdk synth
+
       - name: Bootstrap stack
-        run: npx run cdk bootstrap
+        run: npm run cdk bootstrap
 
       - name: Deploy stack
         run: npm run cdk deploy --require-approval never
