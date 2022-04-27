@@ -34,9 +34,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Synth stack
-        run: npm run cdk synth
-
       - name: Bootstrap stack
         run: npm run cdk bootstrap
 
