@@ -1,7 +1,7 @@
 import { Stack } from "aws-cdk-lib";
 import { Code, Function, Runtime } from "aws-cdk-lib/aws-lambda";
 import { join } from "path";
-import {getResourceName} from "../cdk-example-stack";
+import {getResourceName} from "../utils";
 
 export function getLambdaSimpleApi(stack: Stack) {
   return new Function(stack, getResourceName("simple-api"), {

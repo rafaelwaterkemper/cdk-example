@@ -3,7 +3,8 @@ import { Rule, Schedule } from "aws-cdk-lib/aws-events";
 import { LambdaFunction } from "aws-cdk-lib/aws-events-targets";
 import { Code, Function, IFunction, Runtime } from "aws-cdk-lib/aws-lambda";
 import { join } from "path";
-import {getResourceName} from "../cdk-example-stack";
+import {getResourceName} from "../utils";
+
 
 export function getEventBridgeCron(stack: Stack) {
   const wordGenerator = new Function(stack, getResourceName("medium-project"), {
