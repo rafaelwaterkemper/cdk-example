@@ -2,7 +2,7 @@ module.exports.handler = async function handler(event) {
   try {
     return {
       statusCode: 200,
-      body: "Hello world from AWS"
+      body: "Hello world from AWS from PR"
     };
   } catch (err) {
     return {
