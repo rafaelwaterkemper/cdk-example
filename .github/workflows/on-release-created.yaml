@@ -6,7 +6,6 @@ on:
 
 env:
   NAMESPACE: production
-  NODE_ENV: production
 
 jobs:
   deploy:
