@@ -35,7 +35,7 @@ jobs:
         run: npm install
 
       - name: Bootstrap stack
-        run: npm run cdk bootstrap
+        run: npx run cdk bootstrap
 
       - name: Deploy stack
         run: npm run cdk deploy --require-approval never
