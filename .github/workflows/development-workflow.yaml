@@ -1,44 +1,44 @@
-name: Deploy to development
-​
+name: Deployment master
+
 on:
   push:
     branches: [master]
   pull_request:
     branches: [master]
-​
+
 env:
   NODE_ENV: development
-​
+
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
     environment: development
-​
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-​
+
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:
           node-version: "14"
-​
+
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@master
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
-​
+
       - name: Install dependencies
         run: npm install
-​
+
       - name: Synth stack
         run: npm run cdk synth
-​
+
       - name: Bootstrap stack
         run: npm run cdk bootstrap
-​
+
       - name: Deploy stack
         run: npm run cdk deploy --require-approval never
