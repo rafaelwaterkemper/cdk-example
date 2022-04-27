@@ -3,7 +3,7 @@ import { Bucket, BucketAccessControl, HttpMethods } from "aws-cdk-lib/aws-s3";
 import { Construct } from "constructs";
 
 export function getBucketImage(stack: Stack) {
-  return new Bucket(stack, "bucket-images", {
+  return new Bucket(stack, "bucket-images-teste", {
     accessControl: BucketAccessControl.PRIVATE,
     cors: [
       {
