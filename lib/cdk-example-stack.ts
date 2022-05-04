@@ -23,6 +23,6 @@ const app = new cdk.App();
 
 new CdkExampleStack(app, `CdkExampleStack${capitalize(getNamespace())}`, {
   synthesizer: new DefaultStackSynthesizer({
-    qualifier: "MY_QUALI",
+    qualifier: "NEW_QUALI",
   }),
 });
