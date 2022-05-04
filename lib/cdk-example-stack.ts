@@ -1,12 +1,12 @@
 import "source-map-support/register";
 import * as cdk from "aws-cdk-lib";
-import { Stack, StackProps } from "aws-cdk-lib";
+import { DefaultStackSynthesizer, Stack, StackProps } from "aws-cdk-lib";
 import { Construct } from "constructs";
 import { getBucketImage } from "./resources/bucket-images";
 import { getLambdaSimpleApi } from "./resources/lambda-simple-api";
 import { createAPIGateway } from "./resources/api-gateway-get-plates";
 import { getEventBridgeCron } from "./resources/event-bridge-cron";
-import {capitalize, getNamespace} from "./utils";
+import { capitalize, getNamespace } from "./utils";
 
 export class CdkExampleStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -21,4 +21,8 @@ export class CdkExampleStack extends Stack {
 
 const app = new cdk.App();
 
-new CdkExampleStack(app, `CdkExampleStack${capitalize(getNamespace())}`, {});
+new CdkExampleStack(app, `CdkExampleStack${capitalize(getNamespace())}`, {
+  synthesizer: new DefaultStackSynthesizer({
+    qualifier: "MY_QUALI",
+  }),
+});
