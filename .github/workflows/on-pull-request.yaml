@@ -36,7 +36,7 @@ jobs:
         run: npm run cdk synth
 
       - name: Bootstrap stack
-        run: npm run cdk bootstrap --toolkit-stack-name CDKToolKitDeveloper --qualifier ${{ env.QUALIFIER }}
+        run: npx cdk bootstrap --toolkit-stack-name CDKToolKitDeveloper --qualifier ${{ env.QUALIFIER }}
 
       - name: Deploy stack
         run: npx cdk deploy --require-approval never
