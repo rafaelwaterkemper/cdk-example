@@ -3,7 +3,7 @@ export function capitalize(text: string) {
 }
 
 export function getNamespace(): string {
-  return "development";
+  return process.env.NAMESPACE || "default";
 }
 
 export function getResourceName(baseName: string) {
