@@ -6,7 +6,7 @@ on:
 
 env:
   NAMESPACE: development
-  QUALIFIER: development
+  QUALIFIER: stage
 
 jobs:
   deploy:

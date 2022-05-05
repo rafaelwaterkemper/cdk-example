@@ -6,7 +6,7 @@ on:
 
 env:
   NAMESPACE: pr${{ github.event.number }}
-  QUALIFIER: development
+  QUALIFIER: stage
 
 jobs:
   deploy:
