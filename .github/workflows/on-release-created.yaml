@@ -6,12 +6,12 @@ on:
 
 env:
   NAMESPACE: production
+  QUALIFIER: production
 
 jobs:
   deploy:
     name: Deploy
     runs-on: ubuntu-latest
-    environment: development
 
     steps:
       - name: Checkout
@@ -36,7 +36,7 @@ jobs:
         run: npm run cdk synth
 
       - name: Bootstrap stack
-        run: npm run cdk bootstrap
+        run: npx cdk bootstrap --toolkit-stack-name CDKToolKitProduction --qualifier ${{ env.QUALIFIER }}
 
       - name: Deploy stack
         run: npx cdk deploy --require-approval never

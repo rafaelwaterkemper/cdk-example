@@ -6,6 +6,7 @@ on:
 
 env:
   NAMESPACE: development
+  QUALIFIER: stage
 
 jobs:
   deploy:
@@ -34,9 +35,12 @@ jobs:
 
       - name: Synth template
         run: npm run cdk synth
+      
+      - name: cdk version
+        run: npx cdk --version
 
       - name: Bootstrap stack
-        run: npm run cdk bootstrap
+        run: npx cdk bootstrap --toolkit-stack-name CDKToolKitDeveloper --qualifier ${{ env.QUALIFIER }}
 
       - name: Deploy stack
         run: npx cdk deploy --require-approval never

@@ -6,7 +6,7 @@ import { getBucketImage } from "./resources/bucket-images";
 import { getLambdaSimpleApi } from "./resources/lambda-simple-api";
 import { createAPIGateway } from "./resources/api-gateway-get-plates";
 import { getEventBridgeCron } from "./resources/event-bridge-cron";
-import {capitalize, getNamespace} from "./utils";
+import { capitalize, getNamespace } from "./utils";
 
 export class CdkExampleStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -21,4 +21,11 @@ export class CdkExampleStack extends Stack {
 
 const app = new cdk.App();
 
-new CdkExampleStack(app, `CdkExampleStack${capitalize(getNamespace())}`, {});
+new CdkExampleStack(app, `CdkExampleStack${capitalize(getNamespace())}`, {
+  synthesizer: new cdk.DefaultStackSynthesizer({
+    qualifier: process.env.QUALIFIER,
+  }),
+});
+
+// standard
+// enterprise
