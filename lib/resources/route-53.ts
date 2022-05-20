@@ -7,7 +7,7 @@ import {
   RecordTarget,
 } from "aws-cdk-lib/aws-route53";
 import { ApiGateway } from "aws-cdk-lib/aws-route53-targets";
-import { getResourceName } from "../utils";
+import { getAPIDomain, getCdkConfiguration, getResourceName } from "../utils";
 
 export interface NetworkSchema {
   hostedZone: IHostedZone;
@@ -43,6 +43,6 @@ export function getHostedZoneRecords(
 
   return {
     hostedZone,
-    apiARecord,
+    apiARecord
   };
 }

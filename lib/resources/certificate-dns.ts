@@ -4,7 +4,7 @@ import {
 } from "aws-cdk-lib/aws-certificatemanager";
 import { IHostedZone } from "aws-cdk-lib/aws-route53";
 import { Construct } from "constructs";
-import { getResourceName } from "../utils";
+import { getAPIDomain, getResourceName } from "../utils";
 
 export function getHTTPSCertificate(
   stack: Construct,
@@ -13,6 +13,6 @@ export function getHTTPSCertificate(
   const apiDomain = getAPIDomain();
   return new DnsValidatedCertificate(stack, getResourceName("certificate"), {
     domainName: apiDomain,
-    hostedZone: hostedZone
+    hostedZone: hostedZone,
   });
 }
