@@ -9,6 +9,7 @@ import { getEventBridgeCron } from "./resources/event-bridge-cron";
 import { capitalize, getNamespace } from "./utils";
 import { getHTTPSCertificate } from "./resources/certificate-dns";
 import { getHostedZone, getHostedZoneRecords } from "./resources/route-53";
+import { getWebappResources } from "./resources/cloud-front-distribution";
 
 export class CdkExampleStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -20,7 +21,8 @@ export class CdkExampleStack extends Stack {
     const hostedZone = getHostedZone(this);
     const certificate = getHTTPSCertificate(this, hostedZone);
     const api = createAPIGateway(this, certificate, lambdaGetPlates);
-    getHostedZoneRecords(this, hostedZone, api);
+    const { cloudFrontDistribution } = getWebappResources(this, certificate);
+    getHostedZoneRecords(this, hostedZone, api, cloudFrontDistribution);
   }
 }
 

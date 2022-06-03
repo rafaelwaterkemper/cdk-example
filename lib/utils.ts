@@ -42,3 +42,16 @@ export function getAPIDomain(): string {
 
   return `api-${getNamespace()}.${zoneName}`;
 }
+
+export function getAPPDomain(): string {
+  const { zoneName } = getCdkConfiguration();
+  if (isStage()) {
+    return `stage.${zoneName}`;
+  }
+
+  if (isProduction()) {
+    return `${zoneName}`;
+  }
+
+  return `${getNamespace()}.${zoneName}`;
+}

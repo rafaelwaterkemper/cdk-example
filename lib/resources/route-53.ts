@@ -1,13 +1,14 @@
 import { Stack } from "aws-cdk-lib";
 import { RestApi } from "aws-cdk-lib/aws-apigateway";
+import {CloudFrontWebDistribution} from "aws-cdk-lib/aws-cloudfront";
 import {
   ARecord,
   HostedZone,
   IHostedZone,
   RecordTarget,
 } from "aws-cdk-lib/aws-route53";
-import { ApiGateway } from "aws-cdk-lib/aws-route53-targets";
-import { getAPIDomain, getCdkConfiguration, getResourceName } from "../utils";
+import { ApiGateway, CloudFrontTarget } from "aws-cdk-lib/aws-route53-targets";
+import { getAPIDomain, getAPPDomain, getCdkConfiguration, getResourceName } from "../utils";
 
 export interface NetworkSchema {
   hostedZone: IHostedZone;
@@ -29,13 +30,21 @@ export function getHostedZone(stack: Stack): IHostedZone {
 export function getHostedZoneRecords(
   stack: Stack,
   hostedZone: IHostedZone,
-  restApi: RestApi
+  restApi: RestApi,
+  distribution: CloudFrontWebDistribution
 ): NetworkSchema {
   const apiDomain = getAPIDomain();
+  const appDomain = getAPPDomain();
 
   const apiARecord = new ARecord(stack, getResourceName("rest-api-arecord"), {
     recordName: apiDomain,
     target: RecordTarget.fromAlias(new ApiGateway(restApi)),
+    zone: hostedZone,
+  });
+
+  const appARecord = new ARecord(stack, getResourceName('webapp-arecord'), {
+    recordName: appDomain,
+    target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
     zone: hostedZone,
   });
 
