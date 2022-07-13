@@ -2,7 +2,7 @@ name: Deployment master
 
 on:
   push:
-    branches: [master]
+    branches: [disabled]
 
 env:
   NAMESPACE: development

@@ -2,7 +2,7 @@ name: Release created
 
 on:
   release:
-    types: [published]
+    types: [disabled]
 
 env:
   NAMESPACE: production
